@@ -43,7 +43,7 @@ messagePrefix = "------ "
 # Command line option defaults
 defaultNumRounds = 3
 defaultDiffName = 'diff'
-defaultLatexdiffOptions = ['append-textcmd=hint.*,todo']
+defaultLatexdiffOptions = []
 defaultPdflatexOptions = ['interaction=batchmode']
 
 

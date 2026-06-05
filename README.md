@@ -72,7 +72,7 @@ Call `gitlatexdiff-original` with option `--help` to get the current list of com
 
 The following options are passed to `latexdiff` or `pdflatex` respectively. For technical reasons values have to be given without leading dashes. Dashes are prepended as required by the respective command. Put each option to pass in single quotes to prevent the shell from interpreting them, like for example `--latexdiff-options 'append-textcmd=hint.*,todo' 'exclude-textcmd=broken'`:
 
-* `-l`, `--latexdiff-options`: List of options passed to `latexdiff` call. Defaults to `'append-textcmd=hint.*,todo'`, which turned out to be useful. Pass without any value to turn off the default. See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for possible options.
+* `-l`, `--latexdiff-options`: List of options passed to `latexdiff` call. See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for possible options.
 * `-p`, `--pdflatex-options`: List of options passed to `pdflatex` call. Defaults to `'interaction=batchmode'` to prevent a user input on each LaTeX problem. Pass without any value to turn off the default. See [`pdftex` manual](https://mirrors.ctan.org/systems/doc/pdftex/manual/pdftex-a.pdf) for possible options.
 
 
@@ -82,11 +82,11 @@ If the diff sources cannot be compiled check the log file for problems with `\DI
 
 Then you may exclude that command from the diff with for example:
 
-`-l 'append-textcmd=hint.*,todo' 'exclude-textcmd=title,.*section,chapter'`
+`-l 'exclude-textcmd=title,.*section,chapter'`
 
-Here, LaTeX commands `\title`, `\chapter`, and all ending in `section` are excluded, so diffs in these commands are not marked in the output. Note, that in this case the `'append-textcmd=hint.*,todo'` is the default for option `-l`, which needs to be set explicitely if `-l` is given.
+Here, LaTeX commands `\title`, `\chapter`, and all ending in `section` are excluded, so diffs in these commands are not marked in the output.
 
-See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for details on these and other options.
+If you miss diffs in special commands, for example `\todo` commands of package `todonotes`, you may add them with `'append-textcmd=todo'`. See also the `safecmd` options in the [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf).
 
 
 
