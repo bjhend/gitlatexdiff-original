@@ -8,7 +8,7 @@ To overcome the limitations, this Python script extends *latexdiff* in several w
 
 * It works with a Git repo such that it compares the current state or a given commit with an earlier commit
 * It resolves `\include` and `\input` commands like LaTeX does
-* It calls `pdflatex` to render the final PDF
+* It calls [`pdflatex`](https://ctan.org/pkg/pdftex) to render the final PDF
 
 In addition the `\include` and `\input` resolving itself can be called as standalone script.
 
@@ -72,8 +72,8 @@ Call `gitlatexdiff-original` with option `--help` to get the current list of com
 
 The following options are passed to `latexdiff` or `pdflatex` respectively. For technical reasons values have to be given without leading dashes. Dashes are prepended as required by the respective command.
 
-* `-l`, `--latexdiff-options`: Arbitrary number of options passed to `latexdiff` call. Pass without any value to turn off the default.
-* `-p`, `--pdflatex-options`: Arbitrary number of options passed to `pdflatex` call. Pass without any value to turn off the default.
+* `-l`, `--latexdiff-options`: Arbitrary number of options passed to `latexdiff` call. Pass without any value to turn off the default. See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for possible options.
+* `-p`, `--pdflatex-options`: Arbitrary number of options passed to `pdflatex` call. Pass without any value to turn off the default. See [`pdftex` manual](https://mirrors.ctan.org/systems/doc/pdftex/manual/pdftex-a.pdf) for possible options.
 
 
 ### Troubleshooting
@@ -84,9 +84,9 @@ Then you may exclude that command from the diff with for example:
 
 `-l 'append-textcmd=hint.*,todo' 'exclude-textcmd=title,.*section,chapter'`
 
-Here, LaTeX commands `\title`, `\chapter`, and all ending in `section` are excluded, so diffs in these commands are not marked in the output.
+Here, LaTeX commands `\title`, `\chapter`, and all ending in `section` are excluded, so diffs in these commands are not marked in the output. Note, that in this case the `'append-textcmd=hint.*,todo'` is the default for option `-l`, which needs to be set explicitely if `-l` is given.
 
-Note, that in this case the `'append-textcmd=hint.*,todo'` is the default for option `-l`, which needs to be set explicitely if `-l` is given.
+See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for details on these and other options.
 
 
 
