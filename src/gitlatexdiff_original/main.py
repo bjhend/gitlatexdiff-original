@@ -399,6 +399,7 @@ class Diff():
                 except FileNotFoundError:
                     print(f"No diff created. See log files for possible cause: {self.config.logNameAbs}")
                     print("Hint: It may help exclude LaTeX commands with for example \"-l 'exclude-textcmd=title,.*section,chapter'\"")
+                    exit(1)
 
         # Remove all temporary pdflatex files
         # This is only relevant if a diff with current dirty work files was made,
