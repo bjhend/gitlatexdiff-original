@@ -70,10 +70,10 @@ Call `gitlatexdiff-original` with option `--help` to get the current list of com
 *  `--debug`: Keep intermediate files under the same base name as the final result and log file
 * `--version`: Print version and exit
 
-The following options are passed to `latexdiff` or `pdflatex` respectively. For technical reasons values have to be given without leading dashes. Dashes are prepended as required by the respective command.
+The following options are passed to `latexdiff` or `pdflatex` respectively. For technical reasons values have to be given without leading dashes. Dashes are prepended as required by the respective command. Put each option to pass in single quotes to prevent the shell from interpreting them, like for example `--latexdiff-options 'append-textcmd=hint.*,todo' 'exclude-textcmd=broken'`:
 
-* `-l`, `--latexdiff-options`: Arbitrary number of options passed to `latexdiff` call. Pass without any value to turn off the default. See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for possible options.
-* `-p`, `--pdflatex-options`: Arbitrary number of options passed to `pdflatex` call. Pass without any value to turn off the default. See [`pdftex` manual](https://mirrors.ctan.org/systems/doc/pdftex/manual/pdftex-a.pdf) for possible options.
+* `-l`, `--latexdiff-options`: List of options passed to `latexdiff` call. Defaults to `'append-textcmd=hint.*,todo'`, which turned out to be useful. Pass without any value to turn off the default. See [`latexdiff` manual](http://mirrors.ctan.org/support/latexdiff/doc/latexdiff-man.pdf) for possible options.
+* `-p`, `--pdflatex-options`: List of options passed to `pdflatex` call. Defaults to `'interaction=batchmode'` to prevent a user input on each LaTeX problem. Pass without any value to turn off the default. See [`pdftex` manual](https://mirrors.ctan.org/systems/doc/pdftex/manual/pdftex-a.pdf) for possible options.
 
 
 ### Troubleshooting
