@@ -1,9 +1,10 @@
 
 # Changelog
 
-## 0.6.0 -- 2026-06-05
+## Next
 
 * Add option `--debug` to keep intermediate files for debugging
+* Fix: worktree not removed due to changed files
 
 
 ## 0.5.0 -- 2026-05-26

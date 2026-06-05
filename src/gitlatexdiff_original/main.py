@@ -245,7 +245,7 @@ class GitRepo():
             try:
                 yield workDirPath
             finally:
-                self._callGit(['worktree', 'remove', str(workDirPath)])
+                self._callGit(['worktree', 'remove', '--force', str(workDirPath)])
 
     def _callGit(self, args:list[str], workingDir:pl.Path|None=None) -> str:
         """Call a Git command in the repo or workingDir if given
