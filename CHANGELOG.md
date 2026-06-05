@@ -1,6 +1,11 @@
 
 # Changelog
 
+## 0.6.0 -- 2026-06-05
+
+* Add option `--debug` to keep intermediate files for debugging
+
+
 ## 0.5.0 -- 2026-05-26
 
 * Fix: site-name of docs does not follow renaming

@@ -67,6 +67,7 @@ Call `gitlatexdiff-original` with option `--help` to get the current list of com
 * `-d`, `--diff-name`: Name of the final diff file. '`.pdf`' will be appended if necessary. The log file of the last `pdflatex` call will be stored beside this file.
 * `-w`, `--overwrite`: If not given `gitlatexdiff-original` refuses to overwite an existing diff file.
 * `--num-rounds`: Number of calls to `pdflatex` when compiling the diff.
+*  `--debug`: Keep intermediate files under the same base name as the final result and log file
 * `--version`: Print version and exit
 
 The following options are passed to `latexdiff` or `pdflatex` respectively. For technical reasons values have to be given without leading dashes. Dashes are prepended as required by the respective command.
@@ -77,7 +78,9 @@ The following options are passed to `latexdiff` or `pdflatex` respectively. For 
 
 ### Troubleshooting
 
-If the diff sources cannot be compiled check the log file for problems with `\DIF...` commands and see which original LaTeX command caused it. Then you may exclude that command from the diff with for example:
+If the diff sources cannot be compiled check the log file for problems with `\DIF...` commands and see which original LaTeX command caused it. Add option `--debug` to see the LaTeX source of the diff to find lines referenced in the log file.
+
+Then you may exclude that command from the diff with for example:
 
 `-l 'append-textcmd=hint.*,todo' 'exclude-textcmd=title,.*section,chapter'`
 

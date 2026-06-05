@@ -113,6 +113,7 @@ class Configuration():
 
         self.newRevision = args.new_rev
         self.oldRevision = args.old_rev
+        self.isDebug = args.debug
 
     def _prependPrefix(self, prefix:str, options:list[str]) -> list[str]:
         """Prepend prefix to all elements of options tuple
@@ -147,6 +148,7 @@ class Configuration():
                             help='Options passed to latexdiff without leading dashes (default: %(default)s)')
         parser.add_argument('-p', '--pdflatex-options', nargs='*', default=defaultPdflatexOptions,
                             help='Options passed to pdflatex without leading dashes (default: %(default)s)')
+        parser.add_argument('--debug', action="store_true", default=False, help="Keep intermediate files under the same base name as the final result and log file")
         parser.add_argument('--version', action='version', version=importlib.metadata.version('gitlatexdiff-original'))
 
         return parser.parse_args()
@@ -350,6 +352,12 @@ class Diff():
             print(f"{messagePrefix}Create diff")
             diffTex = callCommand(['latexdiff'] + self.config.latexdiffOptions
                                   + [str(oldFlatInput), str(newFlatInput)])
+            if self.config.isDebug:
+                basename = self.config.diffNameAbs.stem
+                oldFlatInputSave = self.config.diffNameAbs.with_name(f'{basename}_old{latexExtension}')
+                newFlatInputSave = self.config.diffNameAbs.with_name(f'{basename}_new{latexExtension}')
+                shutil.copy(oldFlatInput, oldFlatInputSave)
+                shutil.copy(newFlatInput, newFlatInputSave)
 
         # Compile diff in a worktree and move it to its configure final path.
         # Note that workDir is the repo itself if self.newSha1 is None.
@@ -368,6 +376,9 @@ class Diff():
                 diffTexFile.write(diffTex)
                 diffTexFile.close()
                 diffTexFilePath = pl.Path(diffTexFile.name)
+                if self.config.isDebug:
+                    diffTexFilePathSave = self.config.diffNameAbs.with_suffix(latexExtension)
+                    shutil.copy(diffTexFilePath, diffTexFilePathSave)
 
                 # Call pdflatex sufficiently often on diff
                 for i in range(self.config.numTexRounds):
