@@ -1,10 +1,14 @@
 
 # Changelog
 
-## Next
+## 0.6.0 -- 2026-06-07
 
 * Add option `--debug` to keep intermediate files for debugging
 * Fix: worktree not removed due to changed files
+* Improve readme
+* Fix: exit with success even when diff could not be created
+* Remove defaults for `--latexdiff-options`, because they belonged to specific
+  LaTeX packages
 
 
 ## 0.5.0 -- 2026-05-26
